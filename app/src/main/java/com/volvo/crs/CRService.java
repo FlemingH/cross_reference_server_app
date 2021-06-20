@@ -13,25 +13,25 @@ import androidx.annotation.Nullable;
 
 public class CRService extends Service {
 
-    private static final String TAG = "CR AIDL";
+    private static final String TAG = "Service";
 
     private Binder mBinder = new IMyAidlInterface.Stub() {
 
         @Override
-        public int add(int arg1, int agr2) throws RemoteException {
+        public String push(String crJson) throws RemoteException {
 
             new Thread(){
                 @Override
                 public void run() {
                     Looper.prepare();
-                    Toast.makeText(getApplicationContext(), "VCC service received mock app message",
+                    Toast.makeText(getApplicationContext(), "VCC service received mock string!",
                             Toast.LENGTH_SHORT).show();
                     Looper.loop();
                 }
             }.start();
 
-            Log.d(TAG, "a1 = " + arg1 + " a2 = " + agr2);
-            return arg1 + arg1;
+            Log.d(TAG, "Received json is " + crJson);
+            return crJson;
         }
     };
 
