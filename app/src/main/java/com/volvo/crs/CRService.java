@@ -30,6 +30,11 @@ public class CRService extends Service {
                 }
             }.start();
 
+            Intent intent = new Intent();
+            intent.setAction(MainActivity.ACTION_UPDATE_UI);
+            intent.putExtra("value", "update");
+            sendBroadcast(intent);
+
             Log.d(TAG, "Received json is " + crJson);
             return crJson;
         }
